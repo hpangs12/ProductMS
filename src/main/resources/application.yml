@@ -1,0 +1,30 @@
+spring:
+  application:
+    name: ProductMS
+  datasource:
+    url: jdbc:mysql://localhost:3306/productdb
+    username: root
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL8Dialect
+    show-sql: true
+  cache:
+    type: caffeine
+
+management:
+ endpoints:
+  web:
+   exposure:
+    include: '*'
+ endpoint:
+  health:
+    show-details: always
+    
+springdoc:
+  show-actuator: true
+    
+server:
+  port: 8082

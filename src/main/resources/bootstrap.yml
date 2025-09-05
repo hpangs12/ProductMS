@@ -1,0 +1,21 @@
+#spring:
+#  application:
+#    name: ProductMS
+#  datasource:
+#    url: jdbc:mysql://localhost:3306/productdb
+#  cloud:
+#    consul:
+#      discovery:
+#        hostname: localhost
+#      config:
+#        enabled: true
+#        prefixes:
+#        - config
+#        default-context: application
+#        profile-separator: '::'
+#        format: yaml
+#        
+#
+#server:
+#  port: 8082
+#  
