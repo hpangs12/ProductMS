@@ -37,7 +37,7 @@ import com.productms.utility.KafkaUtitily;
  * 
  */
 @RestController
-@RequestMapping("/product")
+@RequestMapping("/products")
 public class ProductController {
 	
 	@Autowired
