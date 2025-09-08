@@ -83,6 +83,11 @@ public class ProductController {
 		return new ResponseEntity<Product>(productService.getProduct(id), HttpStatus.OK);
 	}
 	
+	@GetMapping("/nocache/{id}")
+	public ResponseEntity<Product> getProductNoCache(@PathVariable("id") Integer id) throws Exception {
+		return new ResponseEntity<Product>(productService.getProductNoCache(id), HttpStatus.OK);
+	}
+	
 	@GetMapping("/search")
 	public ResponseEntity<Page<Product>> searchProduct(
 			@RequestParam(required = true, name = "q") String key, 

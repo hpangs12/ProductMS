@@ -46,4 +46,8 @@ public interface ProductService {
 	boolean isInStock(Integer productId);
 
 	List<ProductDTO> saveAllProducts(List<Product> products);
+
+	public void deductQuantity(Long prodId, Integer quantity) throws ProductException;
+
+	Product getProductNoCache(Integer id) throws ProductException;
 }

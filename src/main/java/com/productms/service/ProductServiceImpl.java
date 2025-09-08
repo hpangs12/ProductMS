@@ -73,6 +73,15 @@ public class ProductServiceImpl implements ProductService{
 		
 		return product;
 	}
+	
+	@Override
+	public Product getProductNoCache(Integer id) throws ProductException{
+		
+		Optional<Product> optional = productRepository.findById(id);
+		Product product = optional.orElseThrow(() -> new ProductException("Product not found!"));
+		
+		return product;
+	}
 
 	@Override
 	@CachePut(value = "products", key = "#productDTO.productId")
@@ -129,5 +138,15 @@ public class ProductServiceImpl implements ProductService{
     public List<ProductDTO> saveAllProducts(List<Product> products) {
         return ProductUtility.toResponseList(productRepository.saveAll(products));
     }
+	
+	public void deductQuantity(Long id, Integer quantity) throws ProductException {
+		Product product = productRepository.findById(id.intValue())
+                .orElseThrow(() -> new ProductException("Product not found"));
+		
+		product.setProductQuantity(product.getProductQuantity()-quantity);
+		
+		productRepository.save(product);
+		
+	}
 
 }
