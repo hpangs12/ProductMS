@@ -27,8 +27,6 @@ import com.productms.dto.ProductDTO;
 import com.productms.entity.Product;
 import com.productms.exception.ProductException;
 import com.productms.service.ProductService;
-import com.productms.utility.KafkaUtitily;
-
 
 /***
  * ProductController : Class

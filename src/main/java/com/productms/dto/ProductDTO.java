@@ -2,8 +2,6 @@ package com.productms.dto;
 
 import java.util.Objects;
 
-import com.productms.entity.Product;
-
 /***
  * ProductDTO : Class
  * 

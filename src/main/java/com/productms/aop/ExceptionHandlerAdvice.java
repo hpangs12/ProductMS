@@ -6,10 +6,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
-import com.productms.dto.ProductDTO;
 import com.productms.exception.ProductException;
-
-import jakarta.servlet.ServletException;
 
 /***
  * ExceptionHandlerAdvice : Class

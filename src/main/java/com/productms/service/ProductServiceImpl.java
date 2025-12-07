@@ -10,6 +10,7 @@ import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
 
 import com.productms.dto.ProductDTO;
@@ -38,18 +39,21 @@ public class ProductServiceImpl implements ProductService{
 	KafkaUtitily kafkaUtitily;
 	
 	@Override
+	@PreAuthorize("hasRole('ADMIN')")
 	public Page<Product> getAllProducts(Pageable pageable) {
 
 		return productRepository.findAll(pageable);
 	}
 
 	@Override
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	public Product addProduct(ProductDTO productDTO) {
 
 		return productRepository.save(ProductUtility.getProductEntity(productDTO));
 	}
 	
 	@Override
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@CacheEvict(value = "products", key = "#id")
 	public String deleteProduct(Integer id) throws ProductException {
 		
@@ -84,6 +88,7 @@ public class ProductServiceImpl implements ProductService{
 	}
 
 	@Override
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@CachePut(value = "products", key = "#productDTO.productId")
 	public ProductDTO updateProduct(ProductDTO productDTO) throws ProductException {
 
@@ -102,6 +107,7 @@ public class ProductServiceImpl implements ProductService{
 	}
 
 	@Override
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	public Product patchProduct(Integer id, Map<String, Object> updates) throws ProductException {
 		
 		Product product = productRepository.findById(id)
@@ -135,6 +141,7 @@ public class ProductServiceImpl implements ProductService{
 	
 	@Transactional
 	@Override
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
     public List<ProductDTO> saveAllProducts(List<Product> products) {
         return ProductUtility.toResponseList(productRepository.saveAll(products));
     }
